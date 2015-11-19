@@ -1,3 +1,5 @@
+设为Flex布局以后，子元素的float、clear和vertical-align属性将失效
+
 1.flex布局的概念：
 
 2.flex 容器：{flex项目：{ main size,cross size,沿着主轴依次分布}，主轴(水平轴)，交叉轴(纵轴)，原点在矩形左上角，矩形为其第一象限}，(各种属性的初始化值)

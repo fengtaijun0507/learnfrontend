@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>drag</title>
+    <style type="text/css">
+    #div1 {
+        width: 100px;
+        height: 100px;
+        background: red;
+        position: absolute;
+        left: 100px;
+        right: 100px;
+    }
+    #div2 {
+        width: 100px;
+        height: 100px;
+        background: blue;
+        position: absolute;
+        left: 100px;
+        right: 100px;
+    }
+    </style>
+    <script type="text/javascript">
+    window.onload = function() {
+        var draginstace = new Drag("div1");
+        var draginstace2 = new Drag("div2");
+    }
+
+    function Drag(id) {
+        this.div = document.getElementById(id);
+        this.distanceX = 0;
+        this.distanceY = 0;
+        this.init();
+    }
+
+    Drag.prototype = {
+        constructor: Drag,
+        init: function() {
+            var self = this;
+            self.startMove();
+
+            self.stopMove();
+        },
+        startMove: function() {
+
+            var self = this;
+
+            self.div.onmousedown = function(event) {
+                event = event || window.event;
+                event.preventDefault();
+                self.distanceX = event.clientX - this.offsetLeft;
+                self.distanceY = event.clientY - this.offsetTop;
+                self.div.onmousemove = function(event) {
+                    event = event || window.event;
+                    event.preventDefault();
+                    self.div.style.left = event.clientX - self.distanceX + 'px';
+                    self.div.style.top = event.clientY - self.distanceY + 'px';
+                }
+            }
+        },
+        stopMove: function() {
+            var self = this;
+            self.div.onmouseup = function(event) {
+                /* Act on the event */
+                event.preventDefault();
+                self.div.onmousemove = null;
+            };
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <div id="div1">
+    </div>
+    <div id="div2">
+    </div>
+</body>
+
+</html>

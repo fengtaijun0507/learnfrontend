@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>drag</title>
+    <style type="text/css">
+    #div1 {
+        width: 100px;
+        height: 100px;
+        background: red;
+        position: relative;
+        left:100px;
+        right:100px;
+    }
+    </style>
+    <script type="text/javascript">
+    window.onload = function() {
+        document.onmousedown = function(event) {
+            /* Act on the event */
+            var div = document.getElementById("div1");
+            var distanceX =event.clientX - div1.offsetLeft;
+            var distanceY = event.clientY - div1.offsetTop;
+            document.onmousemove=function(event) {
+                /* Act on the event */
+                event = event || window.event;
+                div.style.left = event.clientX - distanceX + 'px';
+                div.style.top = event.clientY - distanceY + 'px';
+
+            };
+            document.onmouseup=function(event) {
+                /* Act on the event */
+                document.onmousemove = null;
+                document.onmouseup = null;
+                
+            };
+
+        };
+    }
+    </script>
+</head>
+
+<body>
+    <div id="div1">
+    </div>
+</body>
+
+</html>
